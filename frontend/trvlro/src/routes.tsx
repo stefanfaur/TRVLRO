@@ -14,9 +14,14 @@ const Login = Loadable(lazy(() => import("./pages/LoginPage")));
 
 const Register = Loadable(lazy(() => import("./pages/RegisterPage")));
 
-
 // * TRAVEL PAGE
 const Travels = Loadable(lazy(() => import("./pages/TravelsPage")));
+
+// * CHAT PAGE
+const Chat = Loadable(lazy(() => import("./pages/ChatPage")));
+
+// * HOME NAV PAGE
+const Home = Loadable(lazy(() => import("./pages/HomePage")));
 
 //  * HOME PAGE
 const Landing = Loadable(lazy(() => import("./pages/LandingPage")));
@@ -36,10 +41,22 @@ const routes: RouteObject[] = [
     ],
   },
   {
-    path: "travels",
-    element: <Travels />,
+    path: "pages",
+    children: [
+      {
+        path: "travels",
+        element: <Travels />,
+      },
+      {
+        path: "chat",
+        element: <Chat />,
+      },
+      {
+        path: "home",
+        element: <Home />,
+      },
+    ],
   },
-
   {
     path: "*",
     index: true,

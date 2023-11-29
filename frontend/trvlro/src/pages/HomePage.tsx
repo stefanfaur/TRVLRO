@@ -15,8 +15,8 @@ import { useSider } from "../context/SiderContext";
 const { Header, Sider, Content } = Layout;
 
 
-const TravelsPage: React.FC = () => {
-    const { collapsed, setCollapsed } = useSider(); // Set collapsed to true by default
+const HomePage: React.FC = () => {
+  const {collapsed, setCollapsed} = useSider(); // Set collapsed to true by default
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -40,7 +40,7 @@ const TravelsPage: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["2"]}
+          defaultSelectedKeys={["1"]}
           items={[
             {
               key: "1",
@@ -122,11 +122,11 @@ const TravelsPage: React.FC = () => {
             background: colorBgContainer,
           }}
         >
-          TRAVELS PAGE
+          HOME PAGE
         </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default TravelsPage;
+export default HomePage;
