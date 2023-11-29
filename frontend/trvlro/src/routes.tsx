@@ -17,7 +17,7 @@ const Register = Loadable(
 );
 
 //  * HOME PAGE
-const Home = Loadable(lazy(() => import('./pages/HomePage')));
+const Home = Loadable(lazy(() => import('./pages/LandingPage')));
 
 const routes: RouteObject[] = [
     {
