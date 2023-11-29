@@ -1,0 +1,65 @@
+body {
+    background: linear-gradient(to bottom, #346D6D, #609575);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom_text {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.logo {
+    max-width: 35%;
+}
+
+.title,
+.subtitle {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Inter', sans-serif;
+    text-align: center
+
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-button {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+
+    background-color: #67B585;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    margin-bottom: 30px;
+}
+
+.login-text {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+}
