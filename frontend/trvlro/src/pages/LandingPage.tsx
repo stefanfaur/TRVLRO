@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { Button } from "antd";
-import styles from "../styles/HomePage.module.css";
+import styles from "../styles/LandingPage.module.css";
 import logo from "../assets/logo_comp_transparent.png";
 import { useNavigate } from "react-router-dom";
 
-const HomePage: React.FC = () => {
+const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   const handleRegisterClick = () => {
     navigate("/authentication/register");
@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
   }, []);
     
     return (
-    <div className={styles.homepage}>
+    <div className={styles.landingpage}>
       <img src={logo} alt="Logo" className={styles.logo} />
       <h1 className={styles.title}>
         Discover the new way <br></br>of travelling.
@@ -34,11 +34,11 @@ const HomePage: React.FC = () => {
         </Button>
         <div className={styles["button-separator"]}></div>
         <p className={styles["login-text"]}>
-          Already an user? <a href="#" onClick={handleLoginClick}>Log in</a>
+          Already an user? <a href="" onClick={handleLoginClick}>Log in</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default LandingPage;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import styles from '../styles/LoginPage.module.css';
 import logo from '../assets/logo_text_transparent.png';
 
@@ -7,6 +7,10 @@ import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
 
 const LoginPage: React.FC = () => {
+    useLayoutEffect(() => {
+        document.body.style.background = "linear-gradient(to bottom, #5fe3e3, #a6a6a6)";
+    }, []);
+    
     return (
         <div className={styles['login-page']}>
             <div className={styles.logo}>
