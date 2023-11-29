@@ -34,7 +34,7 @@ const LandingPage: React.FC = () => {
         </Button>
         <div className={styles["button-separator"]}></div>
         <p className={styles["login-text"]}>
-          Already an user? <a href="#" onClick={handleLoginClick}>Log in</a>
+          Already an user? <a href="" onClick={handleLoginClick}>Log in</a>
         </p>
       </div>
     </div>
