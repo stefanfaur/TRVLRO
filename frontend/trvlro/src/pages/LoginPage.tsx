@@ -1,32 +1,30 @@
 import React from 'react';
-import '../styles/LoginPage.css';
+import styles from '../styles/LoginPage.module.css';
 import logo from '../assets/logo_text_transparent.png';
 
 import googleIcon from '../assets/google.svg';
 import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
 
-
-
 const LoginPage: React.FC = () => {
     return (
-        <div className="login-page">
-            <div className="logo">
-                <img src={logo} alt="Logo" className="logo" />
+        <div className={styles['login-page']}>
+            <div className={styles.logo}>
+                <img src={logo} alt="Logo" className={styles.logo} />
             </div>
-            <p className="text">Login and start your travels.</p>
-            <div className="account-details">
-                <input type="email" placeholder="Email" className="input"/>
-                <input type="password" placeholder="Password" className="input" />
+            <p className={styles.text}>Login and start your travels.</p>
+            <div className={styles['account-details']}>
+                <input type="email" placeholder="Email" className={styles.input}/>
+                <input type="password" placeholder="Password" className={styles.input} />
             </div>
-            <Button type="primary" className="login-button">Login</Button>
-            <div className="quick">
-                <p className="bottom_text">Or login with</p>
-                <Button className="facebook-button" value="Face">
-                    <img src={facebookIcon} alt="Facebook Icon" className="facebook-icon" />
+            <Button type="primary" className={styles['login-button']}>Login</Button>
+            <div className={styles.quick}>
+                <p className={styles.bottom_text}>Or login with</p>
+                <Button className={styles['facebook-button']} value="Face">
+                    <img src={facebookIcon} alt="Facebook Icon" className={styles['facebook-icon']} />
                 </Button>
-                <Button className="google-button">
-                    <img src={googleIcon} alt="Google Icon" className="google-icon" />
+                <Button className={styles['google-button']}>
+                    <img src={googleIcon} alt="Google Icon" className={styles['google-icon']} />
                 </Button>
             </div>
         </div>
