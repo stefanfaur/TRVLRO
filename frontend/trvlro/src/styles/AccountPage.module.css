@@ -1,0 +1,120 @@
+
+body {
+    background-color: #f5f5f5;
+}
+h1, h2, h3 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4081;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-container {
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    position: absolute;
+    top: 30%;
+    animation: outline-animation 4s infinite;
+}
+
+@keyframes outline-animation {
+    0% {
+        box-shadow: 0 0px 10px rgba(255, 0, 0, 0.5);
+    }
+    25% {
+        box-shadow: 0 0px 10px rgba(0, 0, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0px 25px rgba(255, 25, 0, 0.5);
+    }
+    75% {
+        box-shadow: 0 0cm 10px rgba(48, 126, 69, 0.5);
+    }
+    100% {
+        box-shadow: 0 0px 10px rgba(128, 0, 128, 0.5);
+    }
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-icon {
+    font-size: 35px;
+    margin-right: 8px;
+    color: rgb(251, 0, 0);
+    transition: color 0.3s ease;
+    animation: shake-animation 0.5s ease-in-out;
+}
+
+@keyframes shake-animation {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-3px) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(3px) rotate(5deg);
+    }
+    75% {
+        transform: translateX(-3px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+.user-icon:hover {
+    color: rgb(32, 46, 199);
+}
+
+.user-email {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    animation: fade-in-animation 2s ease-in-out;
+}
+
+@keyframes fade-in-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.travels-count {
+    font-size: 14px;
+    padding: px;
+    color: #888888;
+    animation: count-up-animation 1s ease-in-out;
+}
+
+@keyframes count-up-animation {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

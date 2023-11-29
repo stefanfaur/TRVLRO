@@ -9,22 +9,15 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
     </Suspense>
   );
 
-// *  AUTHENTICATION PAGES
 const Login = Loadable(lazy(() => import("./pages/LoginPage")));
-
 const Register = Loadable(lazy(() => import("./pages/RegisterPage")));
-
-// * TRAVEL PAGE
-const Travels = Loadable(lazy(() => import("./pages/TravelsPage")));
-
-// * CHAT PAGE
-const Chat = Loadable(lazy(() => import("./pages/ChatPage")));
-
-// * HOME NAV PAGE
-const Home = Loadable(lazy(() => import("./pages/HomePage")));
-
-//  * HOME PAGE
 const Landing = Loadable(lazy(() => import("./pages/LandingPage")));
+
+const Travels = Loadable(lazy(() => import("./pages/TravelsPage")));
+const Chat = Loadable(lazy(() => import("./pages/ChatPage")));
+const Home = Loadable(lazy(() => import("./pages/HomePage")));
+const Account = Loadable(lazy(() => import("./pages/AccountPage")));
+
 
 const routes: RouteObject[] = [
   {
@@ -55,6 +48,10 @@ const routes: RouteObject[] = [
         path: "home",
         element: <Home />,
       },
+      {
+        path: "account",
+        element: <Account />,
+      }
     ],
   },
   {
