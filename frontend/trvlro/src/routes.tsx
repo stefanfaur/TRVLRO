@@ -17,7 +17,7 @@ const Register = Loadable(
 );
 
 //  * HOME PAGE
-const Home = Loadable(lazy(() => import('./pages/LandingPage')));
+const Landing = Loadable(lazy(() => import('./pages/LandingPage')));
 
 const routes: RouteObject[] = [
     {
@@ -37,7 +37,7 @@ const routes: RouteObject[] = [
     {
         path: '*',
         index: true,
-        element: <Home />,
+        element: <Landing />,
         
     },
   ];
