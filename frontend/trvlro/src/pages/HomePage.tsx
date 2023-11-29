@@ -9,6 +9,9 @@ const HomePage: React.FC = () => {
   const handleRegisterClick = () => {
     navigate("/authentication/register");
   };
+  const handleLoginClick = () => {
+    navigate("/authentication/login");
+  }
 
   useLayoutEffect(() => {
     document.body.style.background = "linear-gradient(to bottom, #346D6D, #609575)";
@@ -31,7 +34,7 @@ const HomePage: React.FC = () => {
         </Button>
         <div className={styles["button-separator"]}></div>
         <p className={styles["login-text"]}>
-          Already an user? <a href="/authentication/login">Log in</a>
+          Already an user? <a href="#" onClick={handleLoginClick}>Log in</a>
         </p>
       </div>
     </div>
