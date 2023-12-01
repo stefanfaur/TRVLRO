@@ -1,0 +1,128 @@
+.questionnaireContainer {
+    max-width: 600px;
+    margin: 0 auto; 
+    margin-top: 20vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+  
+  .question {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #333;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #777;
+    animation: fadeIn 0.5s ease;
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+  
+.options {
+    margin: 20px 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+  
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+    animation: slideIn 0.3s ease;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #007bff;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    transition: border-color 0.3s ease;
+}
+
+.option input[type="radio"]:checked {
+    border-color: #0056b3;
+    background-color: #0056b3;
+    animation: heartbeat 2s infinite;
+}
+
+.option input[type="radio"]:hover {
+    border-color: #0056b3;
+    background-color: #0056b3;
+    transition: background-color 1s ease;
+    animation: dance 3s infinite alternate;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes dance {
+    0% { transform: rotate(0deg); background-color: #0056b3; }
+    25% { transform: rotate(5deg); background-color: rgb(24, 123, 216); }
+    50% { transform: rotate(0deg); background-color: #6e04bf; }
+    75% { transform: rotate(-5deg); background-color: rgb(0, 98, 255); }
+    100% { transform: rotate(0deg); background-color: #0056b3; }
+}
+
+.option input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+  
+  .button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .button:disabled {
+    background-color: #cccccc;
+    cursor: default;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
