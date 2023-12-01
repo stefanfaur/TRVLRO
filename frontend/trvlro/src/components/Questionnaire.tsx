@@ -84,9 +84,11 @@ const Questionnaire: React.FC = () => {
 
   if (!quizStarted) {
     return (
-      <div className={styles.questionnaireContainer}>
-        <p className={styles.message}>Welcome to our questionnaire! Click start to begin.</p>
-        <button className={styles.button} onClick={handleStartQuiz}>
+        <div className={styles.questionnaireContainer}>
+            <p className={styles.message}><b>Help us get to know you! </b> We'd like you to answer a few questions so that we can recommend you the best places when travelling. </p>
+            <p className={styles.message}><b>Privacy of your data: </b>{"We regard keeping your data secure as very important. You cannot be identified in any way by these answers. We do not keep your real name, or any other relevant data. These answers are used solely so that our algorithm can recommend you the best places when travelling."}</p>
+        <p className={styles.message}><b>Use of external APIs: </b> While our AI Chat is kept in-house, on-premises, for the Travel Generation we do make a call to the OpenAI API, which we cannot guarantee the security of(OpenAI says they do not store the data though). We do not include any personal information in the API request, not even your email. </p>
+            <button className={styles.button} onClick={handleStartQuiz}>
           Start
         </button>
       </div>
