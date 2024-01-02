@@ -8,3 +8,8 @@ api_router.include_router(docs.router)
 api_router.include_router(echo.router, prefix="", tags=["echo"])
 api_router.include_router(cities.router, prefix="", tags=["cities"])
 api_router.include_router(users.router, prefix="", tags=["users"])
+
+
+# really barebones testing ;)
+from trvlro.web.api.runna import test_update_user_knowledge
+test_update_user_knowledge()
