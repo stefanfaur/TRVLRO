@@ -1,11 +1,14 @@
+import json
 import os
+from trvlro.models.city import City
 from trvlro.models.user import User
+import firebase_admin
+from firebase_admin import firestore
+import json
 
 def init_db_credentials():
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/faur/Desktop/facultate/PDSS/TRVLRO/backend/trvlro/_service_account_keys.json"
 
-import firebase_admin
-from firebase_admin import firestore
     
 init_db_credentials()
 app = firebase_admin.initialize_app()
@@ -31,3 +34,10 @@ def update_user_knowledge(userId, questionAnswerPairs, tags):
         "preferences": tags
     })
     
+def add_city_with_attractions(json_file):
+    city_data = json.load(json_file)
+    city = City(**city_data)
+
+    
+    doc_ref = db.collection("cities").document(city.cityId)
+    doc_ref.set(city_data)
