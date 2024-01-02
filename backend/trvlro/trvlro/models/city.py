@@ -7,6 +7,7 @@ class Attraction(BaseModel):
     tags: List[str]
     description: str
     location: str
+    duration: int # in minutes
 
 class City(BaseModel):
     cityId: str

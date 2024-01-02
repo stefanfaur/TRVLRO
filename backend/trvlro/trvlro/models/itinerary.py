@@ -1,6 +1,13 @@
 from pydantic import BaseModel
 from typing import List, Dict
 from datetime import datetime
+from enum import Enum
+
+class focusEnum(str, Enum):
+    food = "food"
+    leisure = "leisure"
+    culture = "culture"
+    none = "none"
 
 class Activity(BaseModel):
     name: str
@@ -18,4 +25,12 @@ class Itinerary(BaseModel):
     cityId: str
     startDate: datetime
     endDate: datetime
+    focus: focusEnum
     activities: List[Activity]
+    
+class ItineraryMeta(BaseModel):
+    cityId: str
+    startDate: datetime
+    endDate: datetime
+    focus: focusEnum
+    

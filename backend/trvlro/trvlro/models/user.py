@@ -7,6 +7,6 @@ class User(BaseModel):
     email: EmailStr
     username: str
     createdAt: datetime
-    personalityData: Dict[str, str]
-    preferences: List[str]
+    questionAnswerPairs: Dict[str, str]
+    tags: List[str]
     itineraries: List[str]  # assuming the references are stored as strings
