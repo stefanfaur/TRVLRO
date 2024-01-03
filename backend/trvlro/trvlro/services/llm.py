@@ -19,4 +19,5 @@ class AIUtil:
             ]
         )
         # print(completion.choices[0].message.content)
-        return completion.choices[0].message.content
+        llm_response = json.loads(completion.choices[0].message.content)
+        return llm_response
