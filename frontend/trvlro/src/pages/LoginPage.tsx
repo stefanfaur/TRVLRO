@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import styles from '../styles/LoginPage.module.css';
 import logo from '../assets/logo_text_transparent.png';
-
+import { useNavigate } from "react-router-dom";
 import googleIcon from '../assets/google.svg';
 import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
@@ -10,6 +10,11 @@ const LoginPage: React.FC = () => {
     useLayoutEffect(() => {
         document.body.style.background = "linear-gradient(to bottom, #5fe3e3, #a6a6a6)";
     }, []);
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        navigate("/pages/chat");
+      }
     
     return (
         <div className={styles['login-page']}>
@@ -21,7 +26,7 @@ const LoginPage: React.FC = () => {
                 <input type="email" placeholder="Email" className={styles.input}/>
                 <input type="password" placeholder="Password" className={styles.input} />
             </div>
-            <Button type="primary" className={styles['login-button']}>Login</Button>
+            <Button type="primary" className={styles['login-button']} onClick={handleLoginClick}>Login</Button>
             <div className={styles.quick}>
                 <p className={styles.bottom_text}>Or login with</p>
                 <Button className={styles['facebook-button']} value="Face">
