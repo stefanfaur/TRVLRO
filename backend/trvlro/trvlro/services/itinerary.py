@@ -1,10 +1,10 @@
 from trvlro.services.database import get_user_itineraries, get_itinerary_by_id
+from trvlro.services.llm import AIUtil
 
 class ItineraryCreator:
-    def create(self, data):
-        # Implementation of the create function
-        # This should also handle interaction with the LLM
-        pass
+    def create(user_id, itinerary_meta):
+        itinerary = AIUtil.create_itinerary(user_id, itinerary_meta)
+        return itinerary
 
 
 class ItineraryUtil:

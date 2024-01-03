@@ -81,6 +81,11 @@ def get_itinerary_by_id(itineraryId, userId):
         return None
     return itinerary_data
     
+def get_user_personality(userId):
+    doc_ref = db.collection("users").document(userId)
+    user_data = doc_ref.get().to_dict()
+    personality = json.dumps(user_data.get("questionAnswerPairs", {})) + json.dumps(user_data.get("tags", []))
+    return personality
     
 def add_city_with_attractions(json_file):
     city_data = json.load(json_file)

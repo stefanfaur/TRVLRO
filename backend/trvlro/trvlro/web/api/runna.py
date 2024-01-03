@@ -55,4 +55,91 @@ def test_update_user_knowledge():
         }
     ]
     }
-    add_itinerary(itinerary)
+    
+    llm_itinerary = {
+    "itineraryId": "itinerary101",
+    "userId": "uuid01",
+    "cityId": "timisoara",
+    "startDate": "2023-04-01 00:00:00",
+    "endDate": "2023-04-04 00:00:00",
+    "focus": "none",
+    "activities": [
+        {
+            "name": "Timisoara Orthodox Cathedral",
+            "description": "An iconic symbol of Timisoara, known for its stunning architecture.",
+            "dayOfVisit": "2023-04-01 00:00:00",
+            "startTime": "2023-04-01 10:00:00",
+            "endTime": "2023-04-01 11:00:00",
+            "duration": 60,
+            "location": "Bulevardul Regele Ferdinand I",
+            "tags": [
+                "architecture",
+                "history",
+                "religion"
+            ],
+            "itineraryId": "itinerary101"
+        },
+        {
+            "name": "Victory Square (Piata Victoriei)",
+            "description": "A vibrant square in the heart of the city, surrounded by historical buildings and cafes.",
+            "dayOfVisit": "2023-04-01 00:00:00",
+            "startTime": "2023-04-01 12:00:00",
+            "endTime": "2023-04-01 12:30:00",
+            "duration": 30,
+            "location": "Piata Victoriei",
+            "tags": [
+                "shopping",
+                "historical",
+                "cafes"
+            ],
+            "itineraryId": "itinerary101"
+        },
+        {
+            "name": "Evening Drinks at Local Bars",
+            "description": "Explore local bars for a taste of Timisoara's nightlife and enjoy a variety of alcoholic beverages.",
+            "dayOfVisit": "2023-04-01 00:00:00",
+            "startTime": "2023-04-01 20:00:00",
+            "endTime": "2023-04-01 23:59:59",
+            "duration": 240,
+            "location": "Various Bars in Timisoara",
+            "tags": [
+                "nightlife",
+                "drinks",
+                "social"
+            ],
+            "itineraryId": "itinerary101"
+        },
+        {
+            "name": "Roses Park",
+            "description": "A beautiful park known for its vast collection of roses and serene atmosphere.",
+            "dayOfVisit": "2023-04-02 00:00:00",
+            "startTime": "2023-04-02 11:00:00",
+            "endTime": "2023-04-02 11:45:00",
+            "duration": 45,
+            "location": "Bulevardul Vasile Pârvan",
+            "tags": [
+                "nature",
+                "leisure",
+                "scenic"
+            ],
+            "itineraryId": "itinerary101"
+        },
+        {
+            "name": "Cultural Day at Banat Museum",
+            "description": "A museum showcasing the rich cultural and historical heritage of the Banat region.",
+            "dayOfVisit": "2023-04-03 00:00:00",
+            "startTime": "2023-04-03 14:00:00",
+            "endTime": "2023-04-03 15:30:00",
+            "duration": 90,
+            "location": "Piata Huniade, 1",
+            "tags": [
+                "culture",
+                "history",
+                "art"
+            ],
+            "itineraryId": "itinerary101"
+        }
+    ]
+}
+    
+    add_itinerary(llm_itinerary)
