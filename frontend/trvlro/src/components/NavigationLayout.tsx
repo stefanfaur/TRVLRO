@@ -11,9 +11,9 @@ import {
 import { useSider } from "../context/SiderContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo_text_transparent.png";
+import styles from "../styles/NavigationLayout.module.css"; // Import CSS module
 
 const { Header, Sider, Content, Footer } = Layout;
-
 interface NavigationLayoutProps {
   children: React.ReactNode;
   defaultSelectedKeys: string[];
@@ -51,7 +51,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
   ];
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout className={styles.layout}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <Menu
@@ -63,61 +63,40 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
       </Sider>
       <Layout>
         <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer, // Apply colorBgContainer here
-            display: "flex",
-            justifyContent: "space-between",
-          }}
+          className={styles.header}
+          style={{ background: colorBgContainer }}
         >
           <Button
+            className={styles.button}
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ fontSize: "16px", width: 64, height: 64 }}
           />
           <div
-            className="logo-container"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-            }}
+            className={styles.logoContainer}
           >
             <img
+              className={styles.logo}
               src={logo}
               alt="Logo"
               onClick={() => navigate("/pages/home")}
-              className="logo"
-              style={{ height: "50px" }}
             />
           </div>
           <Button
+            className={styles.button}
             type="text"
             onClick={() => navigate("/pages/account")}
             icon={<UserOutlined />}
-            style={{ fontSize: "16px", width: 64, height: 64 }}
           />
         </Header>
         <Content
-          style={{
-            margin: "24px 16px",
-            padding: 0,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
+          className={styles.content}
+          style={{ background: colorBgContainer }}
         >
           {children}
         </Content>
         <Footer
-          style={{
-            color: "darkgrey",
-            bottom: 0,
-            width: "100%",
-            textAlign: "center",
-            padding: "2px",
-          }}
+          className={styles.footer}
         >
           <p>Copyright 2023 Produced by Ratpak.</p>
         </Footer>
