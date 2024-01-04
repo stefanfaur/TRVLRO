@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationLayout from '../components/NavigationLayout'; 
 import Questionnaire from '../components/Questionnaire';
 
-const ChatPage: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <NavigationLayout defaultSelectedKeys={['1']}>
       <div>
@@ -12,4 +12,4 @@ const ChatPage: React.FC = () => {
   );
 };
 
-export default ChatPage;
+export default HomePage;
