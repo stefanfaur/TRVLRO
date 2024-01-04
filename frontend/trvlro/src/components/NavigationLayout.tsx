@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout, Menu, Button, theme } from "antd";
 import {
   MenuFoldOutlined,
@@ -28,6 +28,10 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  useEffect(() => {
+    
+    console.log("NavigationLayout: useEffect");
+  })
 
   const menuItems = [
     {
@@ -72,9 +76,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
           />
-          <div
-            className={styles.logoContainer}
-          >
+          <div className={styles.logoContainer}>
             <img
               className={styles.logo}
               src={logo}
@@ -95,9 +97,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
         >
           {children}
         </Content>
-        <Footer
-          className={styles.footer}
-        >
+        <Footer className={styles.footer}>
           <p>Copyright 2023 Produced by Ratpak.</p>
         </Footer>
       </Layout>

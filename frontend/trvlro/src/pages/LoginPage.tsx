@@ -13,7 +13,8 @@ const LoginPage: React.FC = () => {
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
-        navigate("/pages/chat");
+        navigate("/pages/home", {replace: true});
+        //navigate(0);
       }
     
     return (

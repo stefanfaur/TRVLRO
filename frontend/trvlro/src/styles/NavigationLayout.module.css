@@ -1,4 +1,8 @@
 
+.body {
+    display: flex;
+}
+
 .layout {
     height: 100vh;
   }
@@ -29,7 +33,7 @@
   .content {
     margin: 24px 16px;
     padding: 0;
-    minHeight: 280;
+    min-height: 280;
   }
   
   .footer {
