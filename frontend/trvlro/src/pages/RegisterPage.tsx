@@ -19,6 +19,11 @@ const RegisterPage: React.FC = () => {
         ////navigate(0);
     }
 
+    // useLayoutEffect(() => {
+    //     document.body.style.display = 'flex';
+    // }, []);
+    
+
     return (
         <div className={styles['register-page']}>
             <div className={styles.logo}>

@@ -38,19 +38,28 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
       key: "1",
       icon: <HomeOutlined />,
       label: "Home",
-      onClick: () => navigate("/pages/home"),
+      onClick: () => {
+        navigate("/pages/home")
+        navigate(0);
+      },
     },
     {
       key: "2",
       icon: <CompassOutlined />,
       label: "Travels",
-      onClick: () => navigate("/pages/travels"),
+      onClick: () => {
+        navigate("/pages/travels")
+        navigate(0);
+      },
     },
     {
       key: "3",
       icon: <MessageOutlined />,
       label: "Chat",
-      onClick: () => navigate("/pages/chat"),
+      onClick: () => {
+        navigate("/pages/chat")
+        navigate(0);
+      },
     },
   ];
 
@@ -81,13 +90,20 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
               className={styles.logoNav}
               src={logo}
               alt="Logo"
-              onClick={() => navigate("/pages/home")}
+              onClick={() => {
+                navigate("/pages/home");
+                navigate(0);
+                }
+              }
             />
           </div>
           <Button
             className={styles.buttonNav}
             type="text"
-            onClick={() => navigate("/pages/account")}
+            onClick={() => {
+              navigate("/pages/account")
+              navigate(0);
+            }}
             icon={<UserOutlined />}
           />
         </Header>

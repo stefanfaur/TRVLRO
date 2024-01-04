@@ -7,15 +7,20 @@ import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
 
 const LoginPage: React.FC = () => {
-    useLayoutEffect(() => {
-        document.body.style.background = "linear-gradient(to bottom, #5fe3e3, #a6a6a6)";
-    }, []);
+    // useLayoutEffect(() => {
+    //     document.body.style.background = "linear-gradient(to bottom, #5fe3e3, #a6a6a6)";
+    // }, []);
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
         navigate("/pages/home", {replace: true});
         //navigate(0);
-      }
+    }
+    
+    useLayoutEffect(() => {
+        document.body.style.display = 'flex';
+    }, []);
+    
     
     return (
         <div className={styles['login-page']}>
