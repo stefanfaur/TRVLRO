@@ -5,11 +5,19 @@ import logo from '../assets/logo_text_transparent.png';
 import googleIcon from '../assets/google.svg';
 import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
     useLayoutEffect(() => {
         document.body.style.background = "linear-gradient(to bottom, #5fe3e3, #a6a6a6)";
     }, []);
+
+    const navigate = useNavigate();
+
+    const handleRegisterClick = () => {
+        navigate("/pages/home", {replace: true});
+        ////navigate(0);
+    }
 
     return (
         <div className={styles['register-page']}>
@@ -22,7 +30,7 @@ const RegisterPage: React.FC = () => {
                 <input type="password" placeholder="Password" className={styles.input} />
                 <input type="confirm_password" placeholder="Confirm Password" className={styles.input} />
             </div>
-            <Button type="primary" className={styles['register-button']}>Register</Button>
+            <Button type="primary" className={styles['register-button'] } onClick={handleRegisterClick}>Register</Button>
             <div className={styles.quick}>
                 <p className={styles['bottom-text']}>Or register with</p>
                 <Button className={styles['facebook-button']} value="Face">

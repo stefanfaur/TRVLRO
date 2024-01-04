@@ -1,42 +1,42 @@
 
-.body {
+.bodyNav {
     display: flex;
 }
 
-.layout {
+.layoutNav {
     height: 100vh;
   }
   
-  .header {
+  .headerNav {
     padding: 0;
     display: flex;
     justify-content: space-between;
   }
   
-  .button {
+  .buttonNav {
     font-size: 16px;
     width: 64px;
     height: 64px;
   }
   
-  .logoContainer {
+  .logoContainerNav {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
   }
   
-  .logo {
+  .logoNav {
     height: 50px;
   }
   
-  .content {
+  .contentNav {
     margin: 24px 16px;
     padding: 0;
     min-height: 280;
   }
   
-  .footer {
+  .footerNav {
     color: darkgrey;
     bottom: 0;
     width: 100%;

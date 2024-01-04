@@ -55,7 +55,7 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
   ];
 
   return (
-    <Layout className={styles.layout}>
+    <Layout className={styles.layoutNav}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <Menu
@@ -67,37 +67,37 @@ const NavigationLayout: React.FC<NavigationLayoutProps> = ({
       </Sider>
       <Layout>
         <Header
-          className={styles.header}
+          className={styles.headerNav}
           style={{ background: colorBgContainer }}
         >
           <Button
-            className={styles.button}
+            className={styles.buttonNav}
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
           />
-          <div className={styles.logoContainer}>
+          <div className={styles.logoContainerNav}>
             <img
-              className={styles.logo}
+              className={styles.logoNav}
               src={logo}
               alt="Logo"
               onClick={() => navigate("/pages/home")}
             />
           </div>
           <Button
-            className={styles.button}
+            className={styles.buttonNav}
             type="text"
             onClick={() => navigate("/pages/account")}
             icon={<UserOutlined />}
           />
         </Header>
         <Content
-          className={styles.content}
+          className={styles.contentNav}
           style={{ background: colorBgContainer }}
         >
           {children}
         </Content>
-        <Footer className={styles.footer}>
+        <Footer className={styles.footerNav}>
           <p>Copyright 2023 Produced by Ratpak.</p>
         </Footer>
       </Layout>

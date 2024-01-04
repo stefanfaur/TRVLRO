@@ -1,7 +1,7 @@
 import React from 'react';
 import NavigationLayout from '../components/NavigationLayout'; 
 
-const ChatPage: React.FC = () => {
+const TravelsPage: React.FC = () => {
   return (
     <NavigationLayout defaultSelectedKeys={['2']}>
       <div>TRAVELS PAGE</div>
@@ -9,4 +9,4 @@ const ChatPage: React.FC = () => {
   );
 };
 
-export default ChatPage;
+export default TravelsPage;
