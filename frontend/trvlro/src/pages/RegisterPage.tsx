@@ -8,6 +8,8 @@ import facebookIcon from '../assets/facebook.svg';
 import { Button } from 'antd';
 import { signUpUser, signInUserWithGoogle } from '../firebase'
 
+import { createUser } from '../utils/API';
+
 const defaultFormFields = {
     email: '',
     password: '',
@@ -38,6 +40,7 @@ const RegisterPage: React.FC = () => {
 
                 if (userCredential) {
                     resetFormFields()
+                    await createUser(userCredential.user?.uid, email)
                     navigate('/pages/home')
                 }
             } catch (error: any) {

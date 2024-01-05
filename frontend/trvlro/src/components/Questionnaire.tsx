@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../styles/Questionnaire.module.css";
+import { AuthContext } from "../context/AuthContext";
+import { updateUserKnowledge } from "../utils/API";
 
 interface Question {
   question: string;
@@ -19,6 +21,10 @@ const questions: Question[] = [
     question: "What is your preferred mode of transportation?",
     options: ["Plane", "Car", "Train"],
   },
+  {
+    question: "Do you enjoy alcohol?",
+    options: ["Yes", "No", "Sometimes"],
+  },
 ];
 
 const Questionnaire: React.FC = () => {
@@ -27,6 +33,7 @@ const Questionnaire: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { currentUser } = useContext(AuthContext);
   const [hasAnsweredInitialQuestions, setHasAnsweredInitialQuestions] =
       useState(false);
   useEffect(() => {
@@ -55,7 +62,8 @@ const Questionnaire: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Submitted Answers:", Array.from(answers.entries()));
+    console.log("Submitted Answers:", answers);
+    updateUserKnowledge(currentUser?.uid ?? "", answers);
     setIsSubmitted(true);
     localStorage.setItem("hasAnsweredInitialQuestions", "true");
     setHasAnsweredInitialQuestions(true);

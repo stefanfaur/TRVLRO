@@ -5,6 +5,8 @@ from datetime import datetime
 class User(BaseModel):
     userId: str
     email: EmailStr
+    isAdmin: bool
+    threadId: str
     username: str
     createdAt: datetime
     questionAnswerPairs: Dict[str, str]

@@ -18,6 +18,8 @@ def add_user(user):
     doc_ref.set({
         "userId": user.userId,
         "email": user.email,
+        "isAdmin": user.isAdmin,
+        "threadId": user.threadId,
         "username": user.username,
         "createdAt": user.createdAt,
         "questionAnswerPairs": user.questionAnswerPairs,
@@ -26,7 +28,8 @@ def add_user(user):
     })
     
     
-def update_user_knowledge(userId, questionAnswerPairs=None, tags=None):
+def update_user_knowledge(userId, questionAnswerPairs=None, tags=None, isAdmin=False, threadId=None):
+    print("Updating user knowledge for user: " + userId)
     doc_ref = db.collection("users").document(userId)
     user_data = doc_ref.get().to_dict()
 
@@ -35,6 +38,7 @@ def update_user_knowledge(userId, questionAnswerPairs=None, tags=None):
 
     update_data = {}
     if questionAnswerPairs is not None:
+        print(questionAnswerPairs)
         current_question_answer_pairs = user_data.get("questionAnswerPairs", {})
         updated_question_answer_pairs = {**current_question_answer_pairs, **questionAnswerPairs}
         update_data["questionAnswerPairs"] = updated_question_answer_pairs
@@ -43,13 +47,36 @@ def update_user_knowledge(userId, questionAnswerPairs=None, tags=None):
         current_tags = user_data.get("tags", [])
         updated_tags = current_tags + tags
         update_data["tags"] = list(set(updated_tags))
+        
+    if isAdmin:
+        update_data["isAdmin"] = True
+
+    if threadId:
+        update_data["threadId"] = threadId
 
     doc_ref.update(update_data)
+    
+
+    
+def get_thread_id(userId):
+    doc_ref = db.collection("users").document(userId)
+    user_data = doc_ref.get().to_dict()
+    return user_data.get("threadId", None)
+
+def get_isAdmin(userId):
+    doc_ref = db.collection("users").document(userId)
+    user_data = doc_ref.get().to_dict()
+    return user_data.get("isAdmin", False)
     
 
 def add_itineraryIdToUser(userId, itineraryId):
     doc_ref = db.collection("users").document(userId)
     doc_ref.update({"itineraries": firestore.ArrayUnion([itineraryId])})
+    
+def get_itinerary_count(userId):
+    doc_ref = db.collection("users").document(userId)
+    user_data = doc_ref.get().to_dict()
+    return len(user_data.get("itineraries", []))
 
 
 def add_itinerary(itinerary):

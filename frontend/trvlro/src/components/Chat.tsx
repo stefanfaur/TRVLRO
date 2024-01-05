@@ -5,6 +5,7 @@ import Message from "./Message";
 import OpenAI from "openai";
 import { MessageDto } from "../models/MessageDto";
 import { AuthContext } from "../context/AuthContext";
+import { getUserThreadId, updateThreadId } from "../utils/API";
 
 const Chat: React.FC = () => {
   const [isWaiting, setIsWaiting] = useState<boolean>(false);
@@ -32,7 +33,7 @@ const Chat: React.FC = () => {
   }, [assistant]);
 
   const initChatBot = async () => {
-    console.log("initChatBot" + process.env.REACT_APP_OPENAI_API_KEY);
+    //console.log("initChatBot" + process.env.REACT_APP_OPENAI_API_KEY);
     const openai = new OpenAI({
       apiKey: process.env.REACT_APP_OPENAI_API_KEY,
       dangerouslyAllowBrowser: true,
@@ -44,7 +45,25 @@ const Chat: React.FC = () => {
     );
 
     // Create a thread
-    const thread = await openai.beta.threads.create();
+    const userId = currentUser?.uid ?? "";
+    let threadId;
+
+    try {
+      threadId = await getUserThreadId(userId);
+    } catch (error) {
+      // Handle error
+    }
+    let thread;
+    try {
+      thread = await openai.beta.threads.retrieve(threadId);
+      console.log("retrieving thread ", thread);
+    } catch (error) {
+      thread = await openai.beta.threads.create();
+      const newThreadId = thread.id;
+      console.log("threadId", newThreadId);
+      console.log("userId", userId);
+      updateThreadId(userId, newThreadId);
+    }
 
     setOpenai(openai);
     setAssistant(assistant);
@@ -52,7 +71,7 @@ const Chat: React.FC = () => {
   };
 
   const createNewMessage = (content: string, isUser: boolean) => {
-    const newMessage = new MessageDto(isUser, content);
+    const newMessage = new MessageDto(isUser, content + "\n" + thread.id);
     return newMessage;
   };
 
@@ -122,31 +141,31 @@ const Chat: React.FC = () => {
           </Col>
         </Row>
       ))}
-    <Row>
-        <Col style={{ padding: '10px', width: '100%'}} >
-            {isWaiting && <Spin style={{ padding: '10px' }} />}
-            <Input
-                style = {{ width: '100%' }}
-                placeholder="Type your message"
-                disabled={isWaiting}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyPress}
-            />
+      <Row>
+        <Col style={{ padding: "10px", width: "100%" }}>
+          {isWaiting && <Spin style={{ padding: "10px" }} />}
+          <Input
+            style={{ width: "100%" }}
+            placeholder="Type your message"
+            disabled={isWaiting}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+          />
         </Col>
-    </Row>
+      </Row>
       {!isWaiting && (
         <Row justify="end">
-            <Col>
-                <Button
-                    type="primary"
-                    onClick={handleSendMessage}
-                    disabled={isWaiting}
-                    style={{ marginLeft: 'auto', marginRight: '15px' }}
-                >
-                    Send
-                </Button>
-            </Col>
+          <Col>
+            <Button
+              type="primary"
+              onClick={handleSendMessage}
+              disabled={isWaiting}
+              style={{ marginLeft: "auto", marginRight: "15px" }}
+            >
+              Send
+            </Button>
+          </Col>
         </Row>
       )}
     </div>
