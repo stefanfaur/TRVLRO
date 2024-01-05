@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import NavigationLayout from '../components/NavigationLayout'; 
-import { createItinerary } from '../utils/API';
+import { createItinerary, getItineraries } from '../utils/API'; // Assuming you have a function to fetch itineraries
 import { AuthContext } from '../context/AuthContext';
 import styles from '../styles/TravelsPage.module.css';
 import Itinerary from '../components/Itinerary';
@@ -24,6 +24,16 @@ const TravelsPage: React.FC = () => {
   });
 
   const [error, setError] = useState(false); // Add error state
+  const [itineraryList, setItineraryList] = useState<Itinerary[]>([]); // Add itineraryList state
+
+  useEffect(() => {
+    fetchItineraries(); // Fetch itineraries on component mount
+  }, []);
+
+  const fetchItineraries = async () => {
+    const itineraries = await getItineraries(userId); // Assuming you have a function to fetch itineraries
+    setItineraryList(itineraries);
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -33,15 +43,16 @@ const TravelsPage: React.FC = () => {
     }));
   };
 
-  const handleCreateItinerary = () => {
+  const handleCreateItinerary = async () => {
     if (itineraryMeta.cityId === "" || itineraryMeta.startDate === "" || itineraryMeta.endDate === "" || itineraryMeta.focus === "") {
       setError(true); // Set error state to true if any field is empty
     } else {
       setError(false); // Reset error state
       console.log(itineraryMeta);
-      createItinerary(userId, {
+      await createItinerary(userId, {
         ...itineraryMeta
       });
+      fetchItineraries(); // Fetch updated itineraries after creating a new one
     }
   };
 
@@ -88,7 +99,7 @@ const TravelsPage: React.FC = () => {
         </div>
         <button className={styles.button} onClick={handleCreateItinerary}>Create Itinerary</button>
       </div>
-      <Itinerary />
+      <Itinerary itineraryList={itineraryList} /> {/* Pass itineraryList as a prop to Itinerary component */}
     </NavigationLayout>
   );
 };

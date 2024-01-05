@@ -71,7 +71,7 @@ const Chat: React.FC = () => {
   };
 
   const createNewMessage = (content: string, isUser: boolean) => {
-    const newMessage = new MessageDto(isUser, content + "\n" + thread.id);
+    const newMessage = new MessageDto(isUser, content);
     return newMessage;
   };
 
