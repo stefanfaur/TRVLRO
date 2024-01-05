@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from trvlro.web.api.router import api_router
 from trvlro.web.lifetime import register_shutdown_event, register_startup_event
+from fastapi.middleware.cors import CORSMiddleware
 
 APP_ROOT = Path(__file__).parent.parent
 
@@ -26,6 +27,14 @@ def get_app() -> FastAPI:
         redoc_url=None,
         openapi_url="/api/openapi.json",
         default_response_class=UJSONResponse,
+    )
+    
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"], # Allows all origins
+        allow_credentials=True,
+        allow_methods=["*"], # Allows all methods
+        allow_headers=["*"], # Allows all headers
     )
 
     # Adds startup and shutdown events.

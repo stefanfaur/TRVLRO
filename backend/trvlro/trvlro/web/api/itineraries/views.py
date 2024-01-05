@@ -20,6 +20,7 @@ def get_itinerary(user_id: str, itinerary_id: str):
 
 @router.post("/itineraries/add/{user_id}")
 def create_itinerary(user_id: str, itinerary_meta: ItineraryMeta):  
+    print(itinerary_meta)
     itinerary = ItineraryCreator.create(user_id, itinerary_meta)  # Create itinerary using received ItineraryMeta obj
     itinerary["itineraryId"] = str(uuid.uuid4()) # Generate unique id for itinerary
     add_itinerary(itinerary) # Add itinerary to database

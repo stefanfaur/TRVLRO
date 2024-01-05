@@ -13,7 +13,7 @@ def test_update_user_knowledge():
         "question3": "answer3"
     }
     user_id = "uuid01"
-    update_user_knowledge(user_id, tags=tags, questionAnswerPairs=pairs)
+    update_user_knowledge(user_id, tags=tags, questionAnswerPairs=pairs, isAdmin=True, threadId="threadId01")
     
     
     from trvlro.services.database import add_itinerary
