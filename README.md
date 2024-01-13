@@ -1,161 +1,125 @@
-
-# Trvlro Project Overview
-
-## Project Description
+# TRVLRO
 
 Trvlro is an app designed to provide personalized travel itineraries for cities in Romania. It leverages user personality data and city profiles to make tailored suggestions.
 
-## Target Audience
+## Getting Started
 
-Individuals planning to visit Romanian cities, both locals and foreigners, with an initial focus on scalability for future growth.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Technology Stack
+### Prerequisites
 
--   **Frontend**: React with Hooks
--   **Backend**: FastAPI (Python) or NodeJS
--   **Database**: Firestore
--   **Authentication**: Firebase Auth
--   **Deployment**: Initially on-prem, with plans to move to cloud-based hosting
+- Poetry
+- Npm
 
-----------
+### Installing
 
-# Software Architecture
+#### Backend
 
-## Frontend Development
+To run the backend, you will need to have the `.env`  and `_service_account_keys.json`(Firestore Credentials) files in your backend directory. This file contains environment variables necessary for the backend to run correctly.
 
-1.  **Project Setup**: Initialize React project with create-react-app, setup Git.
-2.  **Environment Configuration**:  Configure environment variables for API endpoints, Firebase configuration, etc.
-3.  **Firebase Integration**: Setup Firebase SDK for authentication.
-4.  **State Management**: Setup state management using React Context or Redux.
-5.  **Component Development**: Develop various UI components(Using Ant Components)
-		*!!!Use the Figma design, it keeps compatibility with the Ant Components Repo (I hope)*
-6.  **Routing and Navigation**: Implement navigation using React Router.
-7.  **API Integration**: Develop services for backend communication.
-8.  **Responsive Design**: Ensure UI responsiveness.
-9.  **Testing**: Implement unit and integration tests.
-10.  **Deployment Preparation**: Configure build and deployment settings.
-11.  **UI/UX Refinement**: Enhance user interface and experience.
-12.  **Final Testing and Debugging**: Comprehensive testing and debugging.
+```bash
+# Navigate to the backend directory
+cd backend
 
-## Backend Development
+# Install dependencies
+poetry install
 
-1.  **Project Setup**: Initialize FastAPI project, setup Git.
-2.  **Environment Configuration**: Setup environment variables.
-3.  **Firestore Integration**: Integrate Firestore for database operations.
-4.  **API Endpoints Development**: Develop RESTful API endpoints.
-5.  **LLM Integration**: Setup and integrate LLM for itinerary suggestions.
-6.  **Security**: Implement security measures.
-7.  **Testing**: Write unit and integration tests.
-8.  **Deployment Preparation**: Containerize application, prepare deployment scripts.
-9.  **Monitoring and Logging**: Setup monitoring and logging.
-10.  **Documentation**: Document API endpoints and architecture.
-11.  **Final Testing and Debugging**: Conduct comprehensive testing and debugging.
+# Run the backend
+poetry run python -m trvlro
+```
 
-----------
+This will start the server on the configured host. You can find swagger documentation at `/api/docs`.
 
-# Database Structure - Firestore Integration: Data Models
+#### Frontend
 
-For Firestore, which is a NoSQL database, the data will be structured in documents and collections. Here are proposed models:
+To run the frontend, you will also need to have the `.env.local` file in your frontend directory. This file contains environment variables necessary for the frontend to run correctly.
 
-**1. User Profile Model**
+```bash
+# Navigate to the frontend directory
+cd frontend
 
--   **Collection**: `users`
--   **Document Structure**:
-    -   `userId` (String): Unique identifier for the user.
-    -   `email` (String): User's email address.
-    -   `username` (String): User's chosen username.
-    -   `createdAt` (Timestamp): Account creation date.
-    -   `personalityData` (Map): Stores answers to personality questions.
-    -   `preferences` (Map): Aggregated preferences from questionnaire responses.
-    -   `itineraries` (Array of References): Links to user's planned itineraries.
+# Install dependencies
+npm install
 
-**2. City Profile Model**
+# Run the frontend
+npm start
+```
 
--   **Collection**: `cities`
--   **Document Structure**:
-    -   `cityId` (String): Unique identifier for the city.
-    -   `name` (String): Name of the city.
-    -   `description` (String): Brief description of the city.
-    -   `attractions` (Array of Maps): Detailed info on various attractions.
-        -   Each map in the array could have fields like `name`, `category`, `tags`, `description`, `location`, etc.
+This will start the frontend on the configured host.
 
-**3. Itinerary Model**
+## Deployment
 
--   **Collection**: `itineraries`
--   **Document Structure**:
-    -   `itineraryId` (String): Unique identifier for the itinerary.
-    -   `userId` (String): Identifier of the user who created the itinerary.
-    -   `cityId` (String): Identifier of the city for the itinerary.
-    -   `startDate` (Timestamp): Start date of the trip.
-    -   `endDate` (Timestamp): End date of the trip.
-    -   `activities` (Array of Maps): List of planned activities with details.
+#### Backend
 
-----------
+You can start the project with docker using this command:
 
-# API Endpoint Structure: FastAPI
+```bash
+docker-compose -f deploy/docker-compose.yml --project-directory . up --build
+```
 
-## Endpoints
+If you want to develop in docker with autoreload add `-f deploy/docker-compose.dev.yml` to your docker command.
+Like this:
 
-**1. User Profile Endpoints**
+```bash
+docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . up --build
+```
 
--   `/users/{userId}`:
-    -   GET to retrieve user profile.
-    -   PUT to update user profile.
-    -   DELETE to delete user profile.
+This command exposes the web application on port 8000, mounts current directory and enables autoreload.
 
-**2. Personality Data Endpoints**
+But you have to rebuild image every time you modify `poetry.lock` or `pyproject.toml` with this command:
 
--   `/users/{userId}/personality`:
-    -   POST to submit personality questionnaire responses.
-    -   GET to retrieve stored personality data.
+```bash
+docker-compose -f deploy/docker-compose.yml --project-directory . build
+```
 
-**3. City Profile Endpoints**
+#### Frontend
 
--   `/cities`: GET to retrieve all city profiles.
--   `/cities/{cityId}`: GET to retrieve a specific city profile.
+First you have to build the static files:
 
-**4. Itinerary Endpoints**
+```bash
+npm run build
+```
 
--   `/itineraries`:
-    -   POST to create a new itinerary.
-    -   GET to retrieve all itineraries for a user.
--   `/itineraries/{itineraryId}`:
-    -   GET to retrieve a specific itinerary.
-    -   PUT to update an itinerary.
-    -   DELETE to delete an itinerary.
+Then you can serve them on the cloud, or on-prem with:
 
-**5. Recommendation Endpoints**
+```bash
+npm run serve
+```
 
--   `/recommendations/{userId}`: GET request to generate personalized itinerary suggestions based on user personality data and city profiles.
+## Built With
 
-**6. Feedback Endpoints**
+* [React](https://reactjs.org/) - The web framework used
+* [FastAPI](https://fastapi.tiangolo.com/) - The backend framework used
+* [Poetry](https://python-poetry.org/) - Dependency Management
 
--   `/feedback`: POST request for users to submit feedback on itineraries or app features.
+### Structure
 
-#### Each of these endpoints would need to include appropriate error handling, validation, and security checks (like authentication and authorization where necessary). The API design follows RESTful principles, aiming for clarity, simplicity, and effectiveness in communication with the frontend.
-----------
+#### Backend
 
-# Additional Technical Considerations
+```bash
+$ tree "trvlro"
+trvlro
+├── conftest.py  # Fixtures for all tests.
+├── __main__.py  # Startup script. Starts uvicorn.
+├── services  # Package for different external services such as rabbit or redis etc.
+├── settings.py  # Main configuration settings for project.
+├── static  # Static content.
+├── tests  # Tests for project.
+└── web  # Package contains web server. Handlers, startup config.
+    ├── api  # Package with all handlers.
+    │   └── router.py  # Main router.
+    ├── application.py  # FastAPI application configuration.
+    └── lifetime.py  # Contains actions to perform on startup and shutdown.
+```
 
-## Asynchronous Itinerary Generation
 
--   Implement background processing for generating itineraries.
--   Use task queuing system for efficient management(`Celery` maybe)
--   Implement user notification system for status updates.
-- Implement a progress indicator for the generation
 
-## Efficient Tagging System for LLM Integration
+## Authors
 
--   Create a concise tagging system for attractions and user traits.
--   Develop a matching mechanism to align user preferences with city attractions.
--   Use summarization and aggregation techniques to efficiently feed data into the LLM within token limits.
+* **Stefan Faur** - Backend API, Frontend - [stefanfaur](https://github.com/stefanfaur)
+* **Adel Drinceanu** - Frontend, Authentication - [Adel0s](https://github.com/Adel0s)
 
-## User Experience and Scalability
+## License
 
--   Ensure a seamless user experience with asynchronous processes.
--   Design for scalability from the outset, considering potential future growth.
-## Frontend Handling
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
--   **Asynchronous UI Design**: Design the frontend to handle asynchronous processes. Show loading states and enable users to navigate away and come back to check the status.
--   **Polling or WebSockets**: Implement a mechanism to check for updates on the itinerary status, either through regular polling or using WebSockets for real-time updates.
--  **Robust Error Handling**: In case of failure in itinerary generation, ensure there is a mechanism to notify the user and possibly retry the request.
